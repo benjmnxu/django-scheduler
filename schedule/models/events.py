@@ -605,6 +605,8 @@ class Occurrence(models.Model):
             self.title = event.title
         if not self.description and event:
             self.description = event.description
+        if not self.location and event:
+            self.location = event.location
 
     def moved(self):
         return self.original_start != self.start or self.original_end != self.end

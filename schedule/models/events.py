@@ -57,7 +57,7 @@ class Event(models.Model):
         help_text=_("The end time must be later than the start time."),
     )
     title = models.CharField(_("title"), max_length=255)
-    location = models.CharField(_("location"), max_length=255)
+    location = models.CharField(_("location"), max_length=255, blank=True)
     description = models.TextField(_("description"), blank=True)
     creator = models.ForeignKey(
         django_settings.AUTH_USER_MODEL,
@@ -583,6 +583,7 @@ class EventRelation(models.Model):
 class Occurrence(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name=_("event"))
     title = models.CharField(_("title"), max_length=255, blank=True)
+    location = models.CharField(_("location"), max_length=255, blank=True)
     description = models.TextField(_("description"), blank=True)
     start = models.DateTimeField(_("start"), db_index=True)
     end = models.DateTimeField(_("end"), db_index=True)

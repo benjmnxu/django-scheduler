@@ -57,6 +57,7 @@ class Event(models.Model):
         help_text=_("The end time must be later than the start time."),
     )
     title = models.CharField(_("title"), max_length=255)
+    location = models.CharField(_("location"), max_length=255)
     description = models.TextField(_("description"), blank=True)
     creator = models.ForeignKey(
         django_settings.AUTH_USER_MODEL,

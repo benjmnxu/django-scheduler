@@ -5,6 +5,7 @@ from dateutil import rrule
 from django.conf import settings as django_settings
 from django.contrib.contenttypes import fields
 from django.contrib.contenttypes.models import ContentType
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db.models import Q
 from django.template.defaultfilters import date
@@ -592,6 +593,7 @@ class Occurrence(models.Model):
     original_end = models.DateTimeField(_("original end"))
     created_on = models.DateTimeField(_("created on"), auto_now_add=True)
     updated_on = models.DateTimeField(_("updated on"), auto_now=True)
+    interval = models.IntegerField(_("interval"), blank=True, validators=[MinValueValidator(5), MaxValueValidator(60)])
 
     class Meta:
         verbose_name = _("occurrence")
